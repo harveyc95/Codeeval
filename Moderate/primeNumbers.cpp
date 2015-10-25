@@ -38,38 +38,18 @@ void SieveOfEratosthenes (bool array[], unsigned long long range) {
 	return;
 }
 
-bool isPrime (unsigned long long n) {
-	if (n <= 1)
-		return false;
-	if (n == 2)
-		return true;
-	if (n%2 == 0)
-		return false;
-	unsigned long long m = sqrt(n);
-
-	for (unsigned long long i = 3; i <= m; i++) {
-		if (n%i == 0)
-			return false;
-	}
-	return true;
-}
-
 int main (int argc, char *argv[]) {
 	std::ifstream input_file(argv[1]);	// open the input file
 	unsigned long long seiveRange = 4967295;
 	bool array[seiveRange + 1];
 	SieveOfEratosthenes(array, seiveRange + 1);
-
-	for (unsigned long long i = 0; i < seiveRange; i++)
-		if (array[i]) printf("%d ", i);
 	
 	unsigned long long N;
 	while(input_file) {
 		input_file >> N;
 		printf("2");
-		// if (N < 94967295) {
-			for (unsigned long long i = 3; i < N; i++)
-				if (array[i])	printf(",%llu",i);
-		// }
+		for (unsigned long long i = 3; i < N; i++)
+			if (array[i])	printf(",%llu",i);
+		printf("\n");
 	}
 }
